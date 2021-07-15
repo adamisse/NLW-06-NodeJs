@@ -7,9 +7,15 @@ class ListUsersService {
     async execute(user_id){
         const usersRepositories = getCustomRepository(UsersRepositories);
 
-        const users = await usersRepositories.find();
+        const users = await usersRepositories.find() ;
 
-        return classToPlain(users);
+        const {admin} = await usersRepositories.findOne({
+            id: user_id
+        })
+
+        if (!admin ) return classToPlain(users);
+        return users;
+
     }
 }
 

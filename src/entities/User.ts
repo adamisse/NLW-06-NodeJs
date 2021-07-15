@@ -17,6 +17,7 @@ class User {
     @Column()
     password: string;
 
+    @Exclude()
     @Column()
     admin: boolean;
 
